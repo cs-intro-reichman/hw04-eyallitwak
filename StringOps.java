@@ -22,10 +22,7 @@ public class StringOps {
     ////// ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        int[] array = allIndexOf("MMMM", 'M');
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
-        }
+        System.out.println(capVowelsLowRest("Hello World"));
     }
 
     /*
@@ -41,10 +38,10 @@ public class StringOps {
                 result += (char) currentChar;
             } else {
                 if (isVowel(currentChar)) {
-                    result += (char) (currentChar - 32);
+                    result += toUpperCase(currentChar);
                 } else {
                     if (currentChar <= 'Z' && currentChar > 32) {
-                        result += (char) (currentChar + 32);
+                        result += toLowerCase(currentChar);
                     } else {
                         result += currentChar;
                     }
@@ -78,22 +75,30 @@ public class StringOps {
         return (c >= 'A') && (c <= 'z');
     }
 
+    /* assumes given char is a lowercase letter, returns its uppercase form */
     public static char toUpperCase(char c) {
         return (char) (c - 32);
     }
 
+    /* assumes given char is an uppercase letter, returns its lowercase form */
     public static char toLowerCase(char c) {
         return (char) (c + 32);
     }
 
+    /* gets a char, returns whether it's an uppercase letter */
     public static boolean isUpperCase(char c) {
         return c >= 'A' && c <= 'Z';
     }
 
+    /* gets a char, returns whether it's a lowercase letter */
     public static boolean isLowerCase(char c) {
         return c >= 'a' && c <= 'z';
     }
 
+    /*
+     * "camelCases" a string: 1st letter is lowercased, removes spaces and turns to
+     * uppercase every letter of new word
+     */
     public static String camelCase(String string) {
         String result = "";
         boolean isNextUpper = false;
